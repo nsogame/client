@@ -7,11 +7,13 @@ mod bundle;
 mod components;
 mod resources;
 mod state;
+mod systems;
 
 use amethyst::{
     prelude::*,
     renderer::{DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, Stage},
     ui::{DrawUi, UiBundle},
+    core::transform::TransformBundle,
     utils::application_root_dir,
 };
 
@@ -34,6 +36,7 @@ fn main() -> amethyst::Result<()> {
 
     let game_data = GameDataBuilder::default()
         .with_bundle(OsuBundle)?
+        .with_bundle(TransformBundle::new())?
         .with_bundle(RenderBundle::new(pipe, Some(config)))?
         .with_bundle(UiBundle::<String, String>::new())?;
     let mut game = Application::new("./", OsuState, game_data)?;
