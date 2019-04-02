@@ -1,9 +1,9 @@
 (
   title: "nso",
-  dimensions: None,
+  dimensions: Some((854, 480)),
   max_dimensions: None,
   min_dimensions: None,
-  fullscreen: true,
+  fullscreen: false,
   multisampling: 1,
   visibility: true,
   vsync: true,

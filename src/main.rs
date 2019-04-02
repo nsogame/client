@@ -1,20 +1,23 @@
-extern crate amethyst;
+#[macro_use]
+extern crate serde_derive;
 
 mod audio;
-mod game;
+mod beatmap;
+mod bundle;
+mod components;
+mod resources;
+mod state;
 
 use amethyst::{
     prelude::*,
     renderer::{DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, Stage},
-    ui::DrawUi,
+    ui::{DrawUi, UiBundle},
     utils::application_root_dir,
 };
 
-use crate::game::OsuBundle;
-
-struct Example;
-
-impl SimpleState for Example {}
+use crate::beatmap::Beatmap;
+use crate::bundle::OsuBundle;
+use crate::state::OsuState;
 
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
@@ -31,8 +34,9 @@ fn main() -> amethyst::Result<()> {
 
     let game_data = GameDataBuilder::default()
         .with_bundle(OsuBundle)?
-        .with_bundle(RenderBundle::new(pipe, Some(config)))?;
-    let mut game = Application::new("./", Example, game_data)?;
+        .with_bundle(RenderBundle::new(pipe, Some(config)))?
+        .with_bundle(UiBundle::<String, String>::new())?;
+    let mut game = Application::new("./", OsuState, game_data)?;
 
     game.run();
 
