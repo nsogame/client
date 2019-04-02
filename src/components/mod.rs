@@ -1,3 +1,3 @@
 mod hitobject;
 
-pub use hitobject::HitObject;
+pub use hitobject::{HitObject, HitObjectKind};

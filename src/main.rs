@@ -10,10 +10,10 @@ mod state;
 mod systems;
 
 use amethyst::{
+    core::transform::TransformBundle,
     prelude::*,
     renderer::{DisplayConfig, DrawFlat2D, Pipeline, RenderBundle, Stage},
     ui::{DrawUi, UiBundle},
-    core::transform::TransformBundle,
     utils::application_root_dir,
 };
 
