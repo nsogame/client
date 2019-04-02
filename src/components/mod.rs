@@ -1,1 +1,3 @@
-mod hit_object;
+mod hitobject;
+
+pub use hitobject::HitObject;
